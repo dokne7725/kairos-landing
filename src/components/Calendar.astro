@@ -1,0 +1,78 @@
+---
+import Heading from './Heading.astro';
+
+// --- Lógica (sin cambios) ---
+function getMonthName(monthIndex: number) {
+  const names = [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
+  return names[monthIndex];
+}
+function getDaysInMonth(year: number, month: number) {
+  if ([3, 5, 8, 10].includes(month)) return 30;
+  if (month === 1) return 29; // Bisiesto
+  return 31;
+}
+
+const calendarData = [];
+const year = 2024; // Bisiesto
+
+for (let month = 0; month < 12; month++) {
+  const monthName = getMonthName(month);
+  const daysCount = getDaysInMonth(year, month);
+  const days = [];
+  for (let day = 1; day <= daysCount; day++) {
+    days.push({
+      dayNum: day,
+      href: `https://tally.so/r/GxvOyZ?day=${day}&month=${monthName}` // <--- ¡ASEGÚRATE DE QUE ESTE ES TU ENLACE TALLY!
+    });
+  }
+  calendarData.push({ monthName, days });
+}
+// --- Fin Lógica ---
+---
+
+<section id="calendario" class="relative overflow-hidden bg-gray-50 border-t border-light-gray py-24 sm:py-32">
+
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    <Heading
+      title="Reserva tu Día"
+      subtitle="Este es el museo. Cada día es una oportunidad. Elige el tuyo antes de que desaparezca."
+    />
+
+    <div class="mt-16 flow-root sm:mt-20">
+      <div class="-m-2 rounded-xl bg-white/50 p-2 ring-1 ring-inset ring-light-gray lg:-m-4 lg:rounded-2xl lg:p-4 shadow-sm">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+          {calendarData.map((month) => (
+            <div classs="p-4 bg-white rounded-lg shadow-inner border border-light-gray">
+              <h3 class="text-lg font-semibold text-midnight-blue text-center mb-3">
+                {month.monthName}
+              </h3>
+
+              <div class="grid grid-cols-7 gap-1">
+
+                {month.days.map((day) => (
+                  <a
+                    href={day.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="
+                      flex items-center justify-center h-8 w-full rounded 
+                      text-sm font-medium text-night-gray/70
+                      bg-ivory hover:bg-midnight-blue hover:text-white
+                      transition-all duration-300
+                      focus:outline-none focus:ring-2 focus:ring-midnight-blue
+                    "
+                  >
+                    {day.dayNum}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

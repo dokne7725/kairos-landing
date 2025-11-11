@@ -1,16 +1,77 @@
 ---
-
+// Este es el "frontmatter". Escribimos JavaScript/TypeScript aquí.
+import '../styles/global.css';
+import Features from '../components/Features.astro';
+import Calendar from '../components/Calendar.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Kairós: El Museo de los Días</title>
+
+	<style is:global>
+		@tailwind base;
+		@tailwind components;
+		@tailwind utilities;
+	</style>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body class="min-h-screen">
+
+		<main class="relative isolate overflow-hidden">
+		<div class="mx-auto max-w-3xl px-6 lg:px-8 py-32 sm:py-48">
+			<div class="text-center">
+
+			<h1 class="text-4xl font-bold tracking-tight text-night-gray sm:text-6xl">
+				Kairós
+			</h1>
+
+			<p class="mt-6 text-lg leading-8 text-night-gray/80">
+			El tiempo es un lienzo. <strong class="text-midnight-blue">Chronos</strong> es el reloj que corre, pero <strong class="text-midnight-blue">Kairós</strong> es el momento que importa.
+			</p>
+			<p class="mt-4 text-lg leading-8 text-night-gray/80">
+			Te presentamos un museo digital donde no vendemos segundos. Ofrecemos la **propiedad permanente** de los 366 dias del año.
+			</p>
+
+			<div class="mt-10 flex items-center justify-center gap-x-6">
+				<a 
+				href="#calendario" 
+				class="
+					rounded-md bg-midnight-blue px-3.5 py-2.5 text-sm font-semibold text-white
+					shadow-sm transition-all duration-300
+					hover:bg-midnight-blue/80
+					focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-midnight-blue
+				"
+				>
+				Reserva tu Día
+				</a>
+				<a 
+				href="#como-funciona" 
+				class="
+					text-sm font-semibold leading-6 text-night-gray
+					transition-all duration-300 hover:text-night-gray/70
+				"
+				>
+				Saber más <span aria-hidden="true">→</span>
+				</a>
+			</div>
+
+			</div>
+		</div>
+		</main>
+
+		<Features />
+		<Calendar />
+		<Footer />
+
+  </body>
 </html>
